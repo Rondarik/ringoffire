@@ -1,0 +1,13 @@
+<div class="field">
+    <div class="card_stack">
+        @for (count of [0,1,2,3]; track count) {
+        <img src="/assets/img/cards/card_cover.png" [ngStyle]="{'right.px':count * 5}">
+        }
+        <img (click)="takeCard()" class="top_card" style="right: 25px;" src="/assets/img/cards/card_cover.png">
+        @for (card of game?.playedCards; track card) {
+        <img src="/assets/img/cards/{{ card }}.png" class="played_card">
+        <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pick_card" style="right: 25px;"
+        src="/assets/img/cards/{{ currentCard }}.png">
+        }
+    </div>
+</div>
