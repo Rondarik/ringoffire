@@ -1,13 +1,27 @@
+@for (player of game?.players; track player; let i = $index) {
+    <app-player [ngStyle]="{'top.px': 120 + (i * 120)}" class="player_position"
+    [name] = player [playerActive]="i == game?.currentPlayer"> 
+    </app-player>
+}
+
 <div class="field">
     <div class="card_stack">
         @for (count of [0,1,2,3]; track count) {
         <img src="/assets/img/cards/card_cover.png" [ngStyle]="{'right.px':count * 5}">
         }
         <img (click)="takeCard()" class="top_card" style="right: 25px;" src="/assets/img/cards/card_cover.png">
+     
         @for (card of game?.playedCards; track card) {
         <img src="/assets/img/cards/{{ card }}.png" class="played_card">
+        }
         <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pick_card" style="right: 25px;"
         src="/assets/img/cards/{{ currentCard }}.png">
-        }
+        
     </div>
 </div>
+
+<button mat-fab color="primary" class="btn_add" (click)="openDialog()">
+    <mat-icon>person_add</mat-icon>
+  </button>
+
+<app-game-info [card]="currentCard" class="pin_bottom"></app-game-info>
